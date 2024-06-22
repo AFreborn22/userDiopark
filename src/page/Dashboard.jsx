@@ -4,12 +4,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faQrcode, faBolt, faSync, faUserCircle, faFileLines, faCar, faMotorcycle, faTicket, faTimes } from '@fortawesome/free-solid-svg-icons';
 import backgroundImage from '../assets/img/main_bg.jpg';
 import Footer from '../components/Footer';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import { getCookie, getUserFromCookie, isUserDataComplete } from '../utils/cookieUtils'; // Import fungsi dari utils
 
 function Dashboard() {
+    const history = useHistory();
     const [scanning, setScanning] = useState(false);
     const [cameraImage, setCameraImage] = useState(null);
     const [isBackCamera, setIsBackCamera] = useState(true);
@@ -31,11 +32,22 @@ function Dashboard() {
     const [userData, setUserData] = useState(null);
 
     useEffect(() => {
+        const token = getCookie('token');
+        if (!token) {
+            history.push('/'); 
+        } else {
+            const savedUserData = getUserFromCookie();
+            if (savedUserData) {
+                setUserData(savedUserData);
+            }
+        }
+    }, [history]);
+
+    useEffect(() => {
         fetchParkingQuota();
-        const savedUserData = getUserFromCookie();
-        console.log('Saved User Data:', savedUserData);
-        if (savedUserData) {
-            setUserData(savedUserData);
+        const savedBlokParkir = localStorage.getItem('blokParkir');
+        if (savedBlokParkir) {
+            setBlokParkir(savedBlokParkir);
         }
     }, []);
 
@@ -113,17 +125,9 @@ function Dashboard() {
             setAlertMessage(`Scan Gagal: ${error.message} (Kode: ${error.status || 'Unknown'})`);
             setShowAlert(true);
         } finally {
-            setIsSending(false);  // Set flag pengiriman selesai
+            setIsSending(false);
         }
     };
-
-    useEffect(() => {
-        fetchParkingQuota();
-        const savedBlokParkir = localStorage.getItem('blokParkir');
-        if (savedBlokParkir) {
-            setBlokParkir(savedBlokParkir);
-        }
-    }, []);
 
     const fetchTicket = async () => {
         const token = getCookie('token');
@@ -220,7 +224,7 @@ function Dashboard() {
     };
 
     const handleScanButtonClick = () => {
-        console.log('Checking user data before scanning:', userData); // Tambahkan log ini
+        console.log('Checking user data before scanning:', userData);
         if (!userData || !isUserDataComplete(userData)) {
             setAlertSeverity('warning');
             setAlertMessage('Lengkapi Data Terlebih Dahulu');

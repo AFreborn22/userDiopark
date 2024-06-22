@@ -34,7 +34,7 @@ function Dashboard() {
     useEffect(() => {
         const token = getCookie('token');
         if (!token) {
-            history.push('/'); 
+            history.push('/');
         } else {
             const savedUserData = getUserFromCookie();
             if (savedUserData) {

@@ -1,0 +1,452 @@
+{
+	"info": {
+		"_postman_id": "14f7e315-eddb-4f11-a9f3-08b1796f96c1",
+		"name": "parking monitoring",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "31568109"
+	},
+	"item": [
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nama\": \"Akmal Fauzan\",\r\n    \"nomor_telp\": \"081299920023\",\r\n    \"nomor_polisi\": \"E 5351 XM\",\r\n    \"detail_kendaraan\": \"Vario 110\",\r\n    \"email\": \"aafauzan52@gmail.com\",\r\n    \"username\": \"Afreborn\",\r\n    \"password\": \"akmalpunya123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://dioparkapp-production.up.railway.app/api/auth/register"
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"aafauzan52@gmail.com\",\r\n    \"password\": \"akmalpunya123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://dioparkapp-production.up.railway.app/api/auth/login"
+			},
+			"response": []
+		},
+		{
+			"name": "loginGoogle",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://accounts.google.com/o/oauth2/auth?client_id=326616611456-kiegljfa6jb7n3v3h2l7mkvh7ek0av9r.apps.googleusercontent.com&redirect_uri=https://dioparkapp-production.up.railway.app/api/auth/google/callback&response_type=code&scope=profile%20email",
+					"protocol": "https",
+					"host": [
+						"accounts",
+						"google",
+						"com"
+					],
+					"path": [
+						"o",
+						"oauth2",
+						"auth"
+					],
+					"query": [
+						{
+							"key": "client_id",
+							"value": "326616611456-kiegljfa6jb7n3v3h2l7mkvh7ek0av9r.apps.googleusercontent.com"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "https://dioparkapp-production.up.railway.app/api/auth/google/callback"
+						},
+						{
+							"key": "response_type",
+							"value": "code"
+						},
+						{
+							"key": "scope",
+							"value": "profile%20email"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "editprofile",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9wZW5nZ3VuYSI6MywiZW1haWwiOiJhZnJlYm9ybjVAZ21haWwuY29tIiwiaWF0IjoxNzE0MzE4MDg2LCJleHAiOjE3MTQzMjE2ODZ9.7PAoCOglGAbg-tw12N7YY94qrDFgnK4w-Xx3z54-7z0",
+						"uuid": "63b722d4-2649-4714-af84-6072d2f3ca7a"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nama\": \"Akmal Fauzan\",\r\n    \"username\": \"akmal7\",\r\n    \"email\": \"aafauzan52@gmail.com\",\r\n    \"password\": \"akmalpunya123\",\r\n    \"nomor_telp\": \"081299920023\",\r\n    \"nomor_polisi\": \"B 2356 HI\",\r\n    \"detail_kendaraan\": \"Nmax hitam\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://dioparkapp-production.up.railway.app/api/profile/update"
+			},
+			"response": []
+		},
+		{
+			"name": "scan-masuk",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9wZW5nZ3VuYSI6MSwiZW1haWwiOiJhYWZhdXphbjUyQGdtYWlsLmNvbSIsImlhdCI6MTcxNDc1MTQzNywiZXhwIjoxNzE0NzU1MDM3fQ.ZgpKC0oLlh-oWYizGfIXG8QN_1W7UB9s5lDoa4gfK7E",
+						"uuid": "67ae1ef3-2614-4215-a1b7-77d7c276573d"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"blok_parkir\" : \"A3\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://dioparkapp-production.up.railway.app/api/diopark/scan-masuk"
+			},
+			"response": []
+		},
+		{
+			"name": "scan-keluar",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9wZW5nZ3VuYSI6MSwiZW1haWwiOiJhYWZhdXphbjUyQGdtYWlsLmNvbSIsImlhdCI6MTcxNDc1MTQzNywiZXhwIjoxNzE0NzU1MDM3fQ.ZgpKC0oLlh-oWYizGfIXG8QN_1W7UB9s5lDoa4gfK7E",
+						"uuid": "a76ff728-715d-4c98-ab37-03e20d07a505"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"blok_parkir\" : \"A2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://dioparkapp-production.up.railway.app/api/diopark/scan-keluar",
+					"protocol": "https",
+					"host": [
+						"dioparkapp-production",
+						"up",
+						"railway",
+						"app"
+					],
+					"path": [
+						"api",
+						"diopark",
+						"scan-keluar"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "loginAdmin",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"uuid": "30a951b2-c6e1-4dd4-8bf1-966581b763f5"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"admin1\",\r\n    \"password\": \"jawir123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://dioparkapp-production.up.railway.app/api/auth/admin/login"
+			},
+			"response": []
+		},
+		{
+			"name": "getRiwayat User",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9wZW5nZ3VuYSI6OCwiZW1haWwiOiJhYWZhdXphbjUyQGdtYWlsLmNvbSIsImlhdCI6MTcxNDg4NTcxNywiZXhwIjoxNzE0ODg5MzE3fQ.pCEj_FNLuXbZ3hKGLzquVcgd9Q8rNtLVzx4N_gsBx4w",
+						"type": "text",
+						"uuid": "4be3fd9e-419c-407f-9630-278fa3fa3f8a"
+					}
+				],
+				"url": "https://dioparkapp-production.up.railway.app/api/transaksi/riwayat-transaksi"
+			},
+			"response": []
+		},
+		{
+			"name": "tambahParkiran",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9wZW5nZ3VuYSI6OCwiZW1haWwiOiJhYWZhdXphbjUyQGdtYWlsLmNvbSIsImlhdCI6MTcxNDg4NTcxNywiZXhwIjoxNzE0ODg5MzE3fQ.pCEj_FNLuXbZ3hKGLzquVcgd9Q8rNtLVzx4N_gsBx4w",
+						"type": "text",
+						"uuid": "66660452-0c07-48bd-b957-6c0efe4be64c"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"blok_parkir\": \"A5\",\r\n  \"lantai\": 1,\r\n  \"kendaraan\": \"Motor\",\r\n  \"status\": \"available\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://dioparkapp-production.up.railway.app/api/admin/parkiran/create"
+			},
+			"response": []
+		},
+		{
+			"name": "getParkiranAvailable",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9wZW5nZ3VuYSI6OCwiZW1haWwiOiJhYWZhdXphbjUyQGdtYWlsLmNvbSIsImlhdCI6MTcxNDg4NTcxNywiZXhwIjoxNzE0ODg5MzE3fQ.pCEj_FNLuXbZ3hKGLzquVcgd9Q8rNtLVzx4N_gsBx4w",
+						"type": "text",
+						"uuid": "b8a03e0d-4881-4800-be90-c17e1c5cc2b0"
+					}
+				],
+				"url": "https://dioparkapp-production.up.railway.app/api/admin/parkiran"
+			},
+			"response": []
+		},
+		{
+			"name": "getParkiranByBlok",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcxNDIwMTA4NiwiZXhwIjoxNzE0MjA0Njg2fQ.HbanoBSCswX0iDz3N3W8_BtFvVuC16lGPbNbIcFWvdA",
+						"uuid": "b5a64e1d-9384-4339-bad7-cc9aba67b839"
+					}
+				],
+				"url": "https://dioparkapp-production.up.railway.app/api/admin/parkiran/search/A1"
+			},
+			"response": []
+		},
+		{
+			"name": "getParkiranRealtime",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9wZW5nZ3VuYSI6OCwiZW1haWwiOiJhYWZhdXphbjUyQGdtYWlsLmNvbSIsImlhdCI6MTcxNDg4NTcxNywiZXhwIjoxNzE0ODg5MzE3fQ.pCEj_FNLuXbZ3hKGLzquVcgd9Q8rNtLVzx4N_gsBx4w",
+						"uuid": "8d620473-0040-4040-ba0b-ad7090579eed"
+					}
+				],
+				"url": "https://dioparkapp-production.up.railway.app/api/admin/parkiran/realtime"
+			},
+			"response": []
+		},
+		{
+			"name": "updateParkiran",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcxNDEzNjgxNywiZXhwIjoxNzE0MTQwNDE3fQ.L9Oy-9CjJF3XlznpYLyf75ShCoCfPJVhivgln0auNkA",
+						"uuid": "ebab30f1-6b4e-476d-b61a-52719bb675b0"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"lantai\": 1,\r\n    \"kendaraan\": \"Motor\",\r\n    \"status\": \"unavailable\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://dioparkapp-production.up.railway.app/api/admin/parkiran/A2"
+			},
+			"response": []
+		},
+		{
+			"name": "hapusParkiran",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcxNDEzNjgxNywiZXhwIjoxNzE0MTQwNDE3fQ.L9Oy-9CjJF3XlznpYLyf75ShCoCfPJVhivgln0auNkA",
+						"uuid": "a89a1fb7-437a-4eae-a5f7-8f0199cd2c84"
+					}
+				],
+				"url": "https://dioparkapp-production.up.railway.app/api/admin/parkiran/A2"
+			},
+			"response": []
+		},
+		{
+			"name": "KuotaParkirMotor",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9wZW5nZ3VuYSI6OCwiZW1haWwiOiJhYWZhdXphbkBzdHVkZW50cy5hbWlrb20uYWMuaWQiLCJpYXQiOjE3MTQxNDI4NzUsImV4cCI6MTcxNDE0NjQ3NX0.IP3T2KFCLK2zEZY2QQY-4UgXnoJYjQt0Syim3lsPsO8",
+						"uuid": "46b0f0b0-73a2-405f-bafb-fbcd84565368"
+					}
+				],
+				"url": "https://dioparkapp-production.up.railway.app/api/main/motor"
+			},
+			"response": []
+		},
+		{
+			"name": "KuotaParkirMobil",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9wZW5nZ3VuYSI6OCwiZW1haWwiOiJhYWZhdXphbkBzdHVkZW50cy5hbWlrb20uYWMuaWQiLCJpYXQiOjE3MTQxNDI4NzUsImV4cCI6MTcxNDE0NjQ3NX0.IP3T2KFCLK2zEZY2QQY-4UgXnoJYjQt0Syim3lsPsO8",
+						"uuid": "feb93605-abec-48b8-bca5-b29bd1f175e7"
+					}
+				],
+				"url": "https://dioparkapp-production.up.railway.app/api/main/mobil"
+			},
+			"response": []
+		},
+		{
+			"name": "generateQRmotor",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcxNDIxMjc1MywiZXhwIjoxNzE0MjE2MzUzfQ.789pr7tKhdcNWEwpBy33dBaCZbzGA87LyTSTYd34Uis",
+						"uuid": "395a1bc0-7c22-44a3-9a18-a81da355ec82"
+					}
+				],
+				"url": "https://dioparkapp-production.up.railway.app/api/parkiran/masuk/generate-qr/motor"
+			},
+			"response": []
+		},
+		{
+			"name": "generateQRmobil",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcxNDE0MjUzMCwiZXhwIjoxNzE0MTQ2MTMwfQ.unHM3lZEu0hf6WQWDeUKFhuB1Iv169XJtHfMUaaGybQ",
+						"uuid": "8751984e-f85f-4ccd-8701-e087e2fd8430"
+					}
+				],
+				"url": "https://dioparkapp-production.up.railway.app/api/parkiran/masuk/generate-qr/mobil"
+			},
+			"response": []
+		},
+		{
+			"name": "generateQRKeluar",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcxNDIxMjc1MywiZXhwIjoxNzE0MjE2MzUzfQ.789pr7tKhdcNWEwpBy33dBaCZbzGA87LyTSTYd34Uis",
+						"uuid": "462f7eb6-da7b-4465-91c3-29653aab620f"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"blok_parkir\" : \"A1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://dioparkapp-production.up.railway.app/api/parkiran/keluar/generate-qr/exit"
+			},
+			"response": []
+		},
+		{
+			"name": "forgotPassword",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"aafauzan52@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://dioparkapp-production.up.railway.app/api/password/forgot-password"
+			},
+			"response": []
+		},
+		{
+			"name": "resetPassword",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9wZW5nZ3VuYSI6MSwiaWF0IjoxNzE0NzI5MzU0LCJleHAiOjE3MTQ3MzI5NTR9.iRw3SsugElfuCEixU_jInpDXbl9k9pazSxRZdXT2p-g\",\r\n    \"password\": \"pepek123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://dioparkapp-production.up.railway.app/api/password/reset-password"
+			},
+			"response": []
+		}
+	]
+}

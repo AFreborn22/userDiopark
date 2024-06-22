@@ -48,6 +48,18 @@ function TransactionHistory() {
     return <Navigate to="/" />;
   }
 
+  // Function to format date and time
+  const formatDate = (datetimeStr) => {
+    const options = {
+      year: "numeric",
+      month: "short",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+    };
+    return new Date(datetimeStr).toLocaleString("id-ID", options);
+  };
+
   return (
     <div className="min-h-screen bg-gray-200">
       <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
@@ -109,14 +121,14 @@ function TransactionHistory() {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900">
-                        {transaction.waktu_parkir}
+                        {formatDate(transaction.waktu_parkir)}
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <span
                         className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${transaction.status === "masuk"
-                            ? "bg-green-100 text-green-800"
-                            : "bg-red-100 text-red-800"
+                          ? "bg-green-100 text-green-800"
+                          : "bg-red-100 text-red-800"
                           }`}
                       >
                         {transaction.status}

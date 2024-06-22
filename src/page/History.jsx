@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
 
 function TransactionHistory() {
   const [transactions, setTransactions] = useState([]);
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
+
   const getCookie = (name) => {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
@@ -11,6 +14,10 @@ function TransactionHistory() {
   const getTransactions = async () => {
     try {
       const token = getCookie("token");
+      if (!token) {
+        setIsAuthenticated(false);
+        return;
+      }
 
       const transResponse = await fetch(
         "https://dioparkapp-production.up.railway.app/api/transaksi/riwayat-transaksi",
@@ -21,6 +28,11 @@ function TransactionHistory() {
         }
       );
 
+      if (!transResponse.ok) {
+        setIsAuthenticated(false);
+        return;
+      }
+
       const transData = await transResponse.json();
       setTransactions(transData);
     } catch (error) {
@@ -30,7 +42,11 @@ function TransactionHistory() {
 
   useEffect(() => {
     getTransactions();
-  },);
+  }, []);
+
+  if (!isAuthenticated) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <div className="min-h-screen bg-gray-200">

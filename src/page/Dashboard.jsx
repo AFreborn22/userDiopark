@@ -4,10 +4,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faQrcode, faBolt, faSync, faUserCircle, faFileLines, faCar, faMotorcycle, faTicket, faTimes } from '@fortawesome/free-solid-svg-icons';
 import backgroundImage from '../assets/img/main_bg.jpg';
 import Footer from '../components/Footer';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
-import { getCookie, getUserFromCookie, isUserDataComplete } from '../utils/cookieUtils';
+import { getCookie, getUserFromCookie, isUserDataComplete } from '../utils/cookieUtils'; // Import fungsi dari utils
 
 function Dashboard() {
     const [scanning, setScanning] = useState(false);
@@ -34,7 +34,7 @@ function Dashboard() {
     useEffect(() => {
         const token = getCookie('token');
         if (!token) {
-            setIsAuthenticated(false); 
+            setIsAuthenticated(false); // Set to false if token is not found
         } else {
             const savedUserData = getUserFromCookie();
             if (savedUserData) {
@@ -122,7 +122,7 @@ function Dashboard() {
             setAlertMessage(`Scan Gagal: ${error.message} (Kode: ${error.status || 'Unknown'})`);
             setShowAlert(true);
         } finally {
-            setIsSending(false);
+            setIsSending(false);  // Set flag pengiriman selesai
         }
     };
 
@@ -346,7 +346,7 @@ function Dashboard() {
     );
 
     if (!isAuthenticated) {
-        return <Redirect to="/" />;
+        return <Navigate to="/" />;
     }
 
     return (

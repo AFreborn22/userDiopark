@@ -4,13 +4,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faQrcode, faBolt, faSync, faUserCircle, faFileLines, faCar, faMotorcycle, faTicket, faTimes } from '@fortawesome/free-solid-svg-icons';
 import backgroundImage from '../assets/img/main_bg.jpg';
 import Footer from '../components/Footer';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
-import { getCookie, getUserFromCookie, isUserDataComplete } from '../utils/cookieUtils'; // Import fungsi dari utils
+import { getCookie, getUserFromCookie, isUserDataComplete } from '../utils/cookieUtils';
 
 function Dashboard() {
-    const history = useHistory();
     const [scanning, setScanning] = useState(false);
     const [cameraImage, setCameraImage] = useState(null);
     const [isBackCamera, setIsBackCamera] = useState(true);
@@ -30,24 +29,22 @@ function Dashboard() {
     const [blokParkir, setBlokParkir] = useState(null);
     const [isSending, setIsSending] = useState(false);
     const [userData, setUserData] = useState(null);
+    const [isAuthenticated, setIsAuthenticated] = useState(true);
 
     useEffect(() => {
         const token = getCookie('token');
         if (!token) {
-            history.push('/');
+            setIsAuthenticated(false); 
         } else {
             const savedUserData = getUserFromCookie();
             if (savedUserData) {
                 setUserData(savedUserData);
             }
-        }
-    }, [history]);
-
-    useEffect(() => {
-        fetchParkingQuota();
-        const savedBlokParkir = localStorage.getItem('blokParkir');
-        if (savedBlokParkir) {
-            setBlokParkir(savedBlokParkir);
+            fetchParkingQuota();
+            const savedBlokParkir = localStorage.getItem('blokParkir');
+            if (savedBlokParkir) {
+                setBlokParkir(savedBlokParkir);
+            }
         }
     }, []);
 
@@ -224,7 +221,7 @@ function Dashboard() {
     };
 
     const handleScanButtonClick = () => {
-        console.log('Checking user data before scanning:', userData);
+        console.log('Checking user data before scanning:', userData); // Tambahkan log ini
         if (!userData || !isUserDataComplete(userData)) {
             setAlertSeverity('warning');
             setAlertMessage('Lengkapi Data Terlebih Dahulu');
@@ -347,6 +344,10 @@ function Dashboard() {
             </div>
         </div>
     );
+
+    if (!isAuthenticated) {
+        return <Redirect to="/" />;
+    }
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>

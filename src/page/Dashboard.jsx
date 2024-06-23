@@ -221,10 +221,10 @@ function Dashboard() {
     };
 
     const handleScanButtonClick = () => {
-        console.log('Checking user data before scanning:', userData); // Tambahkan log ini
+        console.log('Checking user data before scanning:', userData); 
         if (!userData || !isUserDataComplete(userData)) {
             setAlertSeverity('warning');
-            setAlertMessage('Lengkapi Data Terlebih Dahulu');
+            setAlertMessage('Lengkapi Profile Terlebih Dahulu');
             setShowAlert(true);
             return;
         }
@@ -335,7 +335,7 @@ function Dashboard() {
                 ) : (
                     <div className="text-center">
                         <h2 className="text-2xl font-semibold mb-4">Ups!</h2>
-                        <p className="text-lg">Anda sedang tidak memiliki tiket masuk.</p>
+                        <p className="text-lg">Anda sedang tidak memiliki tiket.</p>
                         <button onClick={() => setShowTicketPopup(false)} className="absolute top-2 right-2 text-red-500 hover:text-red-700">
                             <FontAwesomeIcon icon={faTimes} size="2x" />
                         </button>

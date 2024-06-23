@@ -50,14 +50,14 @@ function TransactionHistory() {
 
   // Function to format date and time
   const formatDate = (datetimeStr) => {
-    const options = {
-      year: "numeric",
-      month: "short",
-      day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
-    };
-    return new Date(datetimeStr).toLocaleString("id-ID", options);
+    // const options = {
+    //   year: "numeric",
+    //   month: "short",
+    //   day: "2-digit",
+    //   hour: "2-digit",
+    //   minute: "2-digit",
+    // };
+    return new Date(datetimeStr).toLocaleString("id-ID"); //options
   };
 
   return (

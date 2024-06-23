@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import moment from 'moment'; // Corrected import statement
+// import { Navigate } from "react-router-dom";
 
 function TransactionHistory() {
   const [transactions, setTransactions] = useState([]);
@@ -105,7 +105,14 @@ function TransactionHistory() {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900">
-                        {moment(transaction.waktu_parkir).format('YYYY MMMM DD, HH:mm:ss')}
+                        {new Date(transaction.waktu_parkir).toLocaleString('id-ID', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric',
+                          hour: '2-digit',
+                          minute: '2-digit',
+                          second: '2-digit',
+                        })}
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">

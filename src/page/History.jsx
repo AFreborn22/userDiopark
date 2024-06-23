@@ -49,16 +49,16 @@ function TransactionHistory() {
   // }
 
   // Function to format date and time
-  const formatDate = (datetimeStr) => {
-    // const options = {
-    //   year: "numeric",
-    //   month: "short",
-    //   day: "2-digit",
-    //   hour: "2-digit",
-    //   minute: "2-digit",
-    // };
-    return new Date(datetimeStr).toLocaleString("id-ID"); //options
-  };
+  // const formatDate = (datetimeStr) => {
+  //   // const options = {
+  //   //   year: "numeric",
+  //   //   month: "short",
+  //   //   day: "2-digit",
+  //   //   hour: "2-digit",
+  //   //   minute: "2-digit",
+  //   // };
+  //   return new Date(datetimeStr).toLocaleString//("id-ID"); //options
+  // };
 
   return (
     <div className="min-h-screen bg-gray-200">
@@ -121,7 +121,7 @@ function TransactionHistory() {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900">
-                        {formatDate(transaction.waktu_parkir)}
+                        {transaction.waktu_parkir}
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">

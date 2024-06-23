@@ -44,6 +44,10 @@ function TransactionHistory() {
     getTransactions();
   }, []);
 
+  const formatDateTime = (dateTime) => {
+    return dateTime.replace('T', ' ').replace('.000Z', '');
+  };
+
   return (
     <div className="min-h-screen bg-gray-200">
       <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
@@ -105,13 +109,7 @@ function TransactionHistory() {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900">
-                        {new Date(transaction.waktu_parkir).toLocaleString('id-ID', {
-                          year: 'numeric',
-                          month: 'long',
-                          day: 'numeric',
-                          hour: '2-digit',
-                          minute: '2-digit',
-                        }).replace('T', ' ').replace('.000Z', '')}
+                        {formatDateTime(transaction.waktu_parkir)}
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">

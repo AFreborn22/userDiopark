@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
+// import { Navigate } from "react-router-dom";
 
 function TransactionHistory() {
   const [transactions, setTransactions] = useState([]);
@@ -44,9 +44,9 @@ function TransactionHistory() {
     getTransactions();
   }, []);
 
-  if (!isAuthenticated) {
-    return <Navigate to="/" />;
-  }
+  // if (!isAuthenticated) {
+  //   return <Navigate to="/" />;
+  // }
 
   // Function to format date and time
   const formatDate = (datetimeStr) => {

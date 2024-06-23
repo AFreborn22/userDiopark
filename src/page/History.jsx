@@ -105,7 +105,13 @@ function TransactionHistory() {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900">
-                        {transaction.waktu_parkir}
+                        {new Date(transaction.waktu_parkir).toLocaleString('id-ID', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric',
+                          hour: '2-digit',
+                          minute: '2-digit',
+                        }).replace('T', ' ').replace('.000Z', '')}
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">

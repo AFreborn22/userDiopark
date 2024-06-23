@@ -45,7 +45,7 @@ function TransactionHistory() {
   }, []);
 
   const formatDateTime = (dateTime) => {
-    return dateTime.replace('T', ' ').replace('.000Z', '');
+    return dateTime.replace('T', ' - ').replace('.000Z', '');
   };
 
   return (

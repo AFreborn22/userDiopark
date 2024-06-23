@@ -105,18 +105,9 @@ function TransactionHistory() {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900">
-                        {new Date(transaction.waktu_parkir).toLocaleString('id-ID', {
-                          year: 'numeric',
-                          month: 'long',
-                          day: 'numeric',
-                        })} {new Date(transaction.waktu_parkir).toLocaleTimeString('id-ID', {
-                          hour: '2-digit',
-                          minute: '2-digit',
-                          second: '2-digit',
-                        })}
+                        {transaction.waktu_parkir}
                       </div>
                     </td>
-
                     <td className="px-6 py-4 whitespace-nowrap">
                       <span
                         className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${transaction.status === "masuk"
